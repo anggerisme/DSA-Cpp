@@ -7,13 +7,22 @@ class Array{
         int *A;
         int size;
         int length;
-        void Display(Array arr);
+        void display(Array arr);
+        void append(Array *arr, int value);
 };
-// int Cube :: getVolume()
-void Array::Display(Array arr){
+
+// -------------- Inserting elemen --------------------
+void Array::display(Array arr){
     cout << "Tampilkan elemen" << endl;
     for (int i = 0; i < arr.length; i++){
         cout << arr.A[i];
+    }
+}
+
+// -------------- Append elemen --------------------
+void Array::append(Array *arr, int value){
+    if(arr->length<arr->size){
+        arr->A[length++] = value;
     }
 }
 
@@ -30,5 +39,7 @@ int main(){
     }
     arr.length = n;
 
-    arr.Display(arr);
+
+    arr.append(&arr, 10);
+    arr.display(arr);
 }
