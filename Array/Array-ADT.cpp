@@ -11,7 +11,7 @@ class Array{
         void insert(int index, int value);
         void append(int value);
         int Delete(int index);
-
+        int linearsearch(int key);
 };
 
 // -------------- 1. Display elemen --------------------
@@ -55,6 +55,37 @@ int Array::Delete(int index){
     }
 }
 
+// -------------- 5. Searching elemen --------------------
+/*
+    Improving linear search
+    1. Transposition
+    2. Move to front/head
+*/
+void swap(int *x, int *y){
+    int temp;
+    temp = *x;
+    *x = *y;
+    *y = temp;
+}
+
+int Array::linearsearch(int key){
+    for (int i = 0; i < length;i++){
+        if(key == A[i]){
+            /* 1. Tranposition
+                Reducing index slowly
+            */
+            // swap(&A[i], &A[i - 1]);
+            /* 2. Move to head 
+                Directly move index searched into front
+            */
+            swap(&A[i], &A[0]);
+            return i;
+        }
+    }
+        return -1;
+}
+
+
 int main(){
     Array arr;
     int i, n;
@@ -70,7 +101,8 @@ int main(){
 
     // arr.append(&arr, 10);
     system("cls");
-    cout << arr.Delete(2) << endl;
-    arr.insert(2, 3);
+    // cout << arr.Delete(2) << endl;
+    // arr.insert(2, 3);
+    cout << arr.linearsearch(4) << endl;
     arr.display(arr);
 }
