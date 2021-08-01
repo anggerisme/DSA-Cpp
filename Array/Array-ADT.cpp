@@ -11,7 +11,9 @@ class Array{
         void insert(int index, int value);
         void append(int value);
         int Delete(int index);
-        int linearsearch(int key);
+        int linear_search(int key);
+        int binary_search(int key);//looping
+        int Rbinary_search(int arr[], int low, int high, int key);
 };
 
 // -------------- 1. Display elemen --------------------
@@ -67,8 +69,8 @@ void swap(int *x, int *y){
     *x = *y;
     *y = temp;
 }
-
-int Array::linearsearch(int key){
+// ----------- 5.1 Linear search ----------- 
+int Array::linear_search(int key){
     for (int i = 0; i < length;i++){
         if(key == A[i]){
             /* 1. Tranposition
@@ -85,6 +87,39 @@ int Array::linearsearch(int key){
         return -1;
 }
 
+// ----------- 5.2 Binary search -----------
+
+// 1. Looping method
+int Array::binary_search(int key){
+    int low=0, high, mid;
+    high = length-1; // Karena index dimulai dari 0
+
+    while(low<=high){
+        mid = (low + high) / 2;
+        if(key==A[mid])
+            return mid;
+        else if(key<A[mid])
+            high = mid - 1;
+        else
+            low = mid + 1;
+        
+    }
+    return -1;
+}
+
+//2. Recursive Method
+int Array::Rbinary_search(int arr[], int low, int high, int key){
+    if(low<=high){
+        int mid = (low + high) / 2;
+        if(key==A[mid])
+            return mid;
+        else if(key<A[mid])
+            return Rbinary_search(arr, low, mid - 1, key);
+        else
+            return Rbinary_search(arr, mid+1, high, key);
+    }
+    return -1;
+}
 
 int main(){
     Array arr;
@@ -103,6 +138,8 @@ int main(){
     system("cls");
     // cout << arr.Delete(2) << endl;
     // arr.insert(2, 3);
-    cout << arr.linearsearch(4) << endl;
+    cout << "Rbinary search : " << arr.Rbinary_search(arr.A, 0, arr.length, 3) << endl;
+    cout << "Binary search : " << arr.binary_search(3) << endl;
+    cout << "linear search : " << arr.linear_search(3) << endl;
     arr.display(arr);
 }
