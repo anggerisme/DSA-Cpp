@@ -14,6 +14,13 @@ class Array{
         int linear_search(int key);
         int binary_search(int key);//looping
         int Rbinary_search(int arr[], int low, int high, int key);
+        int get(int index);
+        int set(int index, int value);
+        int max();
+        int min();
+        int sum();
+        int Rsum();
+        int avg();
 };
 
 // -------------- 1. Display elemen --------------------
@@ -120,7 +127,61 @@ int Array::Rbinary_search(int arr[], int low, int high, int key){
     }
     return -1;
 }
+// -------------- 6. Get() value from given index --------------------
+int Array::get(int index){
+    if(index>=0 && index<length){
+        return A[index];
+    }
+    return -1;
+}
 
+// -------------------- 7. Set() --------------------
+int Array::set(int index, int value){
+    if (index >= 0 && index<length){
+        A[index] = value;
+    }
+    return A[index];
+}
+
+// -------------------- 8. Max() --------------------
+int Array::max(){
+    int max = A[0], i;
+    for (i = 0; i < length;i++){
+        if(max < A[i]){
+            max = A[i];
+        }
+    }
+        return max;
+}
+
+// -------------------- 9. Min() --------------------
+int Array::min(){
+    int min = A[0], i;
+    for (i = 0; i < length;i++){
+        if(min>A[i]){
+            min = A[i];
+        }
+    }
+    return min;
+}
+
+// -------------------- 10. Sum() --------------------
+int Array::sum(){
+    int total = 0, i;
+    for (i = 0; i < length;i++){
+        total = total + A[i];
+    }
+    return total;
+}
+
+// -------------------- 11. Avg() --------------------
+int Array::avg(){
+    int total, i;
+    for (i = 0; i < length;i++){
+        total = total + A[i];
+    }
+    return total / length;
+}
 int main(){
     Array arr;
     int i, n;
@@ -136,10 +197,17 @@ int main(){
 
     // arr.append(&arr, 10);
     system("cls");
-    // cout << arr.Delete(2) << endl;
+    // cout << arr.Delete(2) << endl; 
     // arr.insert(2, 3);
-    cout << "Rbinary search : " << arr.Rbinary_search(arr.A, 0, arr.length, 3) << endl;
-    cout << "Binary search : " << arr.binary_search(3) << endl;
-    cout << "linear search : " << arr.linear_search(3) << endl;
+    // cout << "Rbinary search : " << arr.Rbinary_search(arr.A, 0, arr.length, 3) << endl;
+    // cout << "Binary search : " << arr.binary_search(3) << endl;
+    // cout << "linear search : " << arr.linear_search(3) << endl;
+    // cout << arr.get(3) << endl;
+    // cout << arr.set(3, 5) << endl;
+    // cout << arr.max() << endl;
+    // cout << arr.min() << endl;
+    cout << arr.sum() << endl;
+    cout << arr.avg() << endl;
+
     arr.display(arr);
 }
