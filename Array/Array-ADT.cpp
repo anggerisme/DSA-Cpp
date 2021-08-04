@@ -5,6 +5,7 @@ using namespace std;
 class Array{
     public:
         int *A;
+        int *B;
         int size;
         int length;
         void display(Array arr);
@@ -21,13 +22,15 @@ class Array{
         int sum();
         int Rsum();
         int avg();
+        void reverse_copy();
+        void reverse_swap();
 };
 
 // -------------- 1. Display elemen --------------------
 void Array::display(Array arr){
     cout << "Tampilkan elemen" << endl;
     for (int i = 0; i < arr.length; i++){
-        cout << arr.A[i];
+        cout << arr.A[i] << " ";
     }
 }
 
@@ -182,12 +185,34 @@ int Array::avg(){
     }
     return total / length;
 }
+
+// -------------------- 12. Reverse() --------------------
+
+/* ---------- 12.1 Reverse by copying() ----------*/
+void Array::reverse_copy(){
+    for (int i = length - 1, j = 0; i >= 0;i--, j++){
+        B[j] = A[i];
+    }
+}
+
+/* ---------- 12.2 Reverse by swap() ----------*/
+void Array::reverse_swap(){
+    int temp;
+    for (int i = 0, j = length - 1; i < j;i++, j--){
+        temp = A[i];
+        A[i] = A[j];
+        A[j] = temp;
+    }
+}
+
+
 int main(){
     Array arr;
     int i, n;
     cout << "Masukkan ukuran array : ";
     cin >> arr.size;
     arr.A = new int[arr.size];
+    arr.B = new int[arr.size];
     cout << "Masukkan jumlah elemen : ";
     cin >> n;
     for (i = 0;i<n;i++){
@@ -206,8 +231,10 @@ int main(){
     // cout << arr.set(3, 5) << endl;
     // cout << arr.max() << endl;
     // cout << arr.min() << endl;
-    cout << arr.sum() << endl;
-    cout << arr.avg() << endl;
+    // cout << arr.sum() << endl;
+    // cout << arr.avg() << endl;
+    // arr.reverse_copy();
+    arr.reverse_swap();
 
     arr.display(arr);
 }
