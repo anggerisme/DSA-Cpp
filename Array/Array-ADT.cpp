@@ -24,6 +24,9 @@ class Array{
         int avg();
         void reverse_copy();
         void reverse_swap();
+        void rotate();
+        void swapping();
+        void rotate2();
 };
 
 // -------------- 1. Display elemen --------------------
@@ -205,6 +208,31 @@ void Array::reverse_swap(){
     }
 }
 
+// -------------------- 13. Rotate() --------------------
+void Array::rotate(){
+    int temp = A[length-1], i;
+    for (i = length - 1; i >= 0;i--)
+        A[i] = A[i - 1];
+
+    A[0] = temp;
+}
+
+// ----------- 13. Rotate_by_swap() -----------
+// void Array::swapping(int i, int j){
+//     int temp = i;
+//     A[0] = A[length - 1];
+//     A[length - 1] = temp;
+// }
+
+// void Array::rotate2(){
+//     int i = 0, j = length - 1;
+//     while(i!=j){
+//         swapping(i, j);
+//         i++;
+//     }
+
+// }
+
 
 int main(){
     Array arr;
@@ -234,7 +262,8 @@ int main(){
     // cout << arr.sum() << endl;
     // cout << arr.avg() << endl;
     // arr.reverse_copy();
-    arr.reverse_swap();
+    // arr.reverse_swap();
+    arr.rotate();
 
     arr.display(arr);
 }
