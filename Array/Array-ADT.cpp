@@ -264,6 +264,19 @@ void Array::insert_in_sorted_array(int value){
         // length++;
 }
 
+// -------------------- 15. Checking whether array sorted or not() --------------------
+int Array::checking_sorted_array(){
+    /*
+        Ide Kunci : Array yang terurut (sorted) ditandai ketika elemen sebelumnya (i) < dari elemen setelahnya (i+1)
+    */
+    int i;
+    for (i = 0; i < length - 1;i++){
+        if(A[i] > A[i+1])
+            return 0; // Return false
+    }
+        return 1; // Return true - Array is sorted
+}
+
 int main(){
     Array arr;
     int i, n;
