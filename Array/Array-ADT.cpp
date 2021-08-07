@@ -25,8 +25,10 @@ class Array{
         void reverse_copy();
         void reverse_swap();
         void rotate();
-        void swapping();
         void rotate2();
+        void insert_in_sorted_array(int value);
+        int checking_sorted_array();
+        void sorting_array();
 };
 
 // -------------- 1. Display elemen --------------------
@@ -233,6 +235,34 @@ void Array::rotate(){
 
 // }
 
+// -------------------- 14. Insert element in sorted arrray() --------------------
+void Array::insert_in_sorted_array(int value){
+    /*
+        Ide kunci : Selama A[i] > value maka terus lakukan pengisian nilai A[i+1] = A[i]
+        -Jika A[i] < value maka BERHENTI dan lakukan   pengisian nilai pada
+        - A[i+1] = value
+        - length++
+    */
+    // -------- 1. For --------
+    int i;
+    for (i = length - 1; i >= 0;){
+        if(A[i]>value){
+            A[i + 1] = A[i];
+            i--;
+        }
+        break;
+    }
+        A[i + 1] = value;
+        length++;
+
+    // -------- 2. While --------
+        // while(A[i] > value){
+        //     A[i + 1] = A[i];
+        //     i--;
+        // }
+        // A[i + 1] = value;
+        // length++;
+}
 
 int main(){
     Array arr;
@@ -263,7 +293,11 @@ int main(){
     // cout << arr.avg() << endl;
     // arr.reverse_copy();
     // arr.reverse_swap();
-    arr.rotate();
+    // arr.rotate();
+    // arr.insert_in_sorted_array(5);
+    // cout << arr.checking_sorted_array() << endl;
+    arr.sorting_array();
+    arr.
 
     arr.display(arr);
 }
