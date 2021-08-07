@@ -277,6 +277,30 @@ int Array::checking_sorted_array(){
         return 1; // Return true - Array is sorted
 }
 
+// -------------------- 16. Sorting (-) & (+) elements () --------------------
+void Array::sorting_array(){
+    /*
+        Ide Kunci : Selama 2 iterator ini menjalankan fungsinya :
+            - i (Pointer utk negatif) = terus berjalan (i++) selama i < 0 
+            - j (Pointer utk positif) = terus berjalan (j--) selama j >= 0
+            
+            Ketika i atau j tidak sesuai dengan syarat, maka harus berhenti, dan ketika keduanya
+            berhentilah nilai i atau j pada saat itu di pertukarkan (swap)
+             
+    */
+    int i = 0, j=length-1;
+    while(i<j){
+        while(A[i]<0)
+            i++;
+        while(A[j]>=0)
+            j--;
+        if(i<j){
+            swap(A[i], A[j]);
+        }
+    }
+
+}
+
 int main(){
     Array arr;
     int i, n;
