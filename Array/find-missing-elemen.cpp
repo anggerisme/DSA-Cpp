@@ -46,6 +46,25 @@
    
 */
 
+/*
+   4. Program : Find missing elemen - using hash method 
+                  
+        Method : 
+            - Ide Kunci :
+                Dengan menggunakan array bantuan [B] dengan ukuran = banyaknya elemen dari array [A], Inisialisasi [B] dengan value 0, kemudian lakukan looping pada [A], nilai A[i] berperan sebagai indeks untuk [B] 
+   
+*/
+
+/*
+   5. Program : Find duplicate elements
+                  
+        Method : 
+            - Ide Kunci :
+                Dengan membandingkan elemen ke[i] dengan elemen ke[i+1] (next element) kita dapat mengetahui apakah elemen tersebut memiliki duplikat atau tidak. Jika ada duplikasi maka simpan duplikat itu ke dalam variable lastDuplicate. nilai lastDuplicate akan terus diperbarui seiring ditemukanya duplikasi elemen.  
+            
+   
+*/
+
 #include <iostream>
 using namespace std;
 
@@ -76,14 +95,32 @@ int main(){
     // }
 
     // 3. Find the missing elements - Start from {6....}
-    int a[]{6, 7, 8, 9, 11, 12, 15, 16, 17, 18, 19};
-    int diff = a[0] - 0;
-    for (i = 0; i < 11;i++){
-        if(a[i]-i !=diff){
-            while(diff<a[i]-i){
-                cout << i + diff << " ";
-                diff++;
-            }
-        }
-    }
+    // int a[]{6, 7, 8, 9, 11, 12, 15, 16, 17, 18, 19};
+    // int diff = a[0] - 0;
+    // for (i = 0; i < 11;i++){
+    //     if(a[i]-i !=diff){
+    //         while(diff<a[i]-i){
+    //             cout << i + diff << " ";
+    //             diff++;
+    //         }
+    //     }
+    // }
+
+    //4. Find the missing element using hash method
+
+    // int a[]{3, 7, 4, 9, 12, 6, 1, 11, 2, 10};
+    // int b[12];
+    // int l = 1;
+    // int h = 12;
+    // for (i = 0; i < 12;i++){
+    //     /*
+    //         Value pada saat a[i] berperan sebagai indeks pada [b], [b] yg tadinya 0 setelah looping bernilai 1. 
+    //     */
+    //     b[a[i]]++;
+    // }
+    // for (i = l; i <= h;i++){
+    //     if(b[i]==0)
+    //         cout << i;
+    // }
+
 }
