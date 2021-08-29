@@ -226,10 +226,10 @@ int main(){
 
     */
 
-    int A[]{6, 3, 8, 10, 16, 7, 5, 2, 9, 14};
-    int n = sizeof(A) / sizeof(int);
-    int k = 10;
-    int B[16]{0};
+    // int A[]{6, 3, 8, 10, 16, 7, 5, 2, 9, 14};
+    // int n = sizeof(A) / sizeof(int);
+    // int k = 10;
+    // int B[16]{0};
 
     // 1. ----- Method 1 -----
     // for (i = 0; i < n - 1;i++){
@@ -241,13 +241,58 @@ int main(){
     // }
 
     // 2. ----- Method 1 (hash table) -----
-    for (i = 0; i < n;i++){
-        /*
-            Penyaringan : Hanya berlaku apabila kedua elemen ketika dijumlahkan = K && ketika k-A[i] lebih besar dari 0. (karena index array tidak boleh negatif) 
-        */
-        if(B[k-A[i]]!=0 && k-A[i]>=0){
-            cout << A[i] << "+" << k - A[i] << " = " << k << endl;
+    // for (i = 0; i < n;i++){
+    //     /*
+    //         Penyaringan : Hanya berlaku apabila kedua elemen ketika dijumlahkan = K && ketika k-A[i] lebih besar dari 0. (karena index array tidak boleh negatif) 
+    //     */
+    //     if(B[k-A[i]]!=0 && k-A[i]>=0){
+    //         cout << A[i] << "+" << k - A[i] << " = " << k << endl;
+    //     }
+    //     B[A[i]]++;
+    // }
+
+    // ----- 9. Find a pair with sum K in sorted array (a+b=k)
+
+    /*
+        Program :
+            Mencari pasangan elemen di suatu array yang jika dijumlahkan akan menghasilkan nilai K. 
+
+            Note : Semua elemen unique, jadi tidak ada duplicate element.
+        
+        Ide Kunci : 
+                Menggunakan 2 iterator i dan j yang melakukan iterasi dari 2 arah, i dari first elemen, j dari last elemen.
+
+                Ketika nilai A[i] dan A[j] dijumlahkan > K maka DECREAMENT j, sebaliknya jika nilai A[i] + A[j] < K maka INCREMENT i.
+    */
+
+    int A[]{1, 3, 4, 5, 6, 8, 9, 10, 12, 14};
+    int k = 10;
+    int n = sizeof(A) / sizeof(int);
+    i = 0;
+    j = n - 1;
+    // ----- 1. while loop -----
+    // while(i<j){
+    //     if(A[i]+A[j]==k){
+    //         cout << A[i] << " + " << A[j] << " = " << k << endl;
+    //         i++;
+    //         j--;
+    //     }
+    //     else if(A[i]+A[j]>k)
+    //         j--;
+    //     else
+    //         i++;
+    // }
+
+    // ----- 2. for loop -----
+    for (i = 0, j = n - 1; i < j;){
+        if(A[i]+A[j]==k){
+            cout << A[i] << " + " << A[j] << " = " << k << endl;
+            i++;
+            j--;
         }
-        B[A[i]]++;
+        else if(A[i]+A[j]>k)
+            j--;
+        else
+            i++;
     }
 }
