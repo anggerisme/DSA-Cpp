@@ -70,7 +70,7 @@ using namespace std;
 
 int main(){
 
-    // 1. Find the missing elemen - Start from {1....}
+    // ----- 1. Find the missing elemen - Start from {1....} -----
     int i,s, sum=0;
     // int a[]{1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12};
 
@@ -81,7 +81,7 @@ int main(){
     // cout << "elemen yang hilang : " << s - sum;
 
 
-    // 2. Find the missing elemen - Start from {6....}
+    // ----- 2. Find the missing elemen - Start from {6....} ------
     
     // int diff;
     // int b[]{6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17};
@@ -94,7 +94,7 @@ int main(){
     //     }
     // }
 
-    // 3. Find the missing elements - Start from {6....}
+    // ----- 3. Find the missing elements - Start from {6....} -----
     // int a[]{6, 7, 8, 9, 11, 12, 15, 16, 17, 18, 19};
     // int diff = a[0] - 0;
     // for (i = 0; i < 11;i++){
@@ -106,7 +106,7 @@ int main(){
     //     }
     // }
 
-    //4. Find the missing element using hash method
+    // ----- 4. Find the missing element using hash method ----- 
 
     // int a[]{3, 7, 4, 9, 12, 6, 1, 11, 2, 10};
     // int b[12];
@@ -122,5 +122,32 @@ int main(){
     //     if(b[i]==0)
     //         cout << i;
     // }
+
+    // ----- 5. Find duplicate elements -----
+    // int lastDuplicate = 0;
+    int A[]{3, 6, 8, 8, 10, 12, 15, 15, 15, 20};
+    // for (i = 0; i < 10; i++){
+    //     if(A[i]==A[i+1] && A[i]!=lastDuplicate){
+    //         cout << A[i];
+    //         // Update lastDuplicate
+    //         lastDuplicate = A[i];
+    //     }
+    // }
+
+    // How to count the duplication?
+    /*
+        Ide Kunci : Dengan bantuan iterator j, pada saat i=i+1 maka iterator j mulai di posisi i+1 kemudian increment dan bandingkan apakah nilai j = i, lakukan sampai j != i. Maka dengan begitu kita tahu ada berapa duplikat elemen disana dengan mengurangkan indeks j - indeks i pada saat itu. Setelah tidak terjadi duplikasi lagi maka interator i melakukan increament lagi.
+    */
+
+    for (i = 0; i < 11;i++){
+        if(A[i]==A[i+1]){
+            int j = i + 1;
+            while(A[j]==A[i])
+                j++;
+            cout << "Elemen " << A[i] << " muncul " << j - i << " kali" << endl;
+
+            i = j - 1;
+        }
+    }
 
 }
