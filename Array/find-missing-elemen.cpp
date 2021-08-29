@@ -265,11 +265,11 @@ int main(){
                 Ketika nilai A[i] dan A[j] dijumlahkan > K maka DECREAMENT j, sebaliknya jika nilai A[i] + A[j] < K maka INCREMENT i.
     */
 
-    int A[]{1, 3, 4, 5, 6, 8, 9, 10, 12, 14};
-    int k = 10;
-    int n = sizeof(A) / sizeof(int);
-    i = 0;
-    j = n - 1;
+    // int A[]{1, 3, 4, 5, 6, 8, 9, 10, 12, 14};
+    // int k = 10;
+    // int n = sizeof(A) / sizeof(int);
+    // i = 0;
+    // j = n - 1;
     // ----- 1. while loop -----
     // while(i<j){
     //     if(A[i]+A[j]==k){
@@ -284,15 +284,38 @@ int main(){
     // }
 
     // ----- 2. for loop -----
-    for (i = 0, j = n - 1; i < j;){
-        if(A[i]+A[j]==k){
-            cout << A[i] << " + " << A[j] << " = " << k << endl;
-            i++;
-            j--;
-        }
-        else if(A[i]+A[j]>k)
-            j--;
-        else
-            i++;
+    // for (i = 0, j = n - 1; i < j;){
+    //     if(A[i]+A[j]==k){
+    //         cout << A[i] << " + " << A[j] << " = " << k << endl;
+    //         i++;
+    //         j--;
+    //     }
+    //     else if(A[i]+A[j]>k)
+    //         j--;
+    //     else
+    //         i++;
+    // }
+
+
+    // ----- 10. Finding Max & Min value in array -----
+
+    /*
+        Ide Kunci :
+            Buat 2 variable Max & Min, inisisialisasi dengan elemen pertama array, lakukan increment terhadap iterator i, compare apakah elemen ke [i] tersebut lebih besar/lebih kecil dari nilai pd variable max/min
+            Jika < min = simpan ke min, replace nilai sebelumnya dengan value tersebut.
+            Jika > max = simpan ke max, replace nilai sebelumnya dengan value tersebut. 
+            Jika tidak lebih besar/kecil biarkan saja dan tetap lakukan increment pada i.
+    */
+    int A[]{5, 8, 3, 9, 6, 2, 10, 7, -1, 4};
+    int n = sizeof(A) / sizeof(int);
+    int min = A[0];
+    int max = A[0];
+    for (i = 0; i < n;i++){
+        if(A[i]<min)
+            min = A[i];
+        else if(A[i]>max)
+            max = A[i];
     }
+    cout << "min : " << min << endl;
+    cout << "max : " << max;
 }
