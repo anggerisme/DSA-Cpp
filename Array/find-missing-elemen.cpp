@@ -64,6 +64,18 @@
             
    
 */
+/*
+   6. Program : Find duplicate elements using hash table + counting how many duplications occur.
+                  
+        Method : 
+            - Ide Kunci :
+                Dengan array bantuan [B] kemudian dilakukan inisialisasi semua elemenya 0, pada array A dilakukan looping dan nilainya pada saat itu A[i] akan berperan sebagai indeks pada array B.
+
+                Menghitung berapa banyak duplikasi :
+                    Lakukan perulangan jika perulangan terjadi lebih dari 1 kali maka ada indikasi terjadi duplikasi elemen
+            
+   
+*/
 
 #include <iostream>
 using namespace std;
@@ -126,6 +138,7 @@ int main(){
     // ----- 5. Find duplicate elements -----
     // int lastDuplicate = 0;
     int A[]{3, 6, 8, 8, 10, 12, 15, 15, 15, 20};
+    int n = sizeof(A) / sizeof(int);
     // for (i = 0; i < 10; i++){
     //     if(A[i]==A[i+1] && A[i]!=lastDuplicate){
     //         cout << A[i];
@@ -139,15 +152,30 @@ int main(){
         Ide Kunci : Dengan bantuan iterator j, pada saat i=i+1 maka iterator j mulai di posisi i+1 kemudian increment dan bandingkan apakah nilai j = i, lakukan sampai j != i. Maka dengan begitu kita tahu ada berapa duplikat elemen disana dengan mengurangkan indeks j - indeks i pada saat itu. Setelah tidak terjadi duplikasi lagi maka interator i melakukan increament lagi.
     */
 
-    for (i = 0; i < 11;i++){
-        if(A[i]==A[i+1]){
-            int j = i + 1;
-            while(A[j]==A[i])
-                j++;
-            cout << "Elemen " << A[i] << " muncul " << j - i << " kali" << endl;
+    // for (i = 0; i < 11;i++){
+    //     if(A[i]==A[i+1]){
+    //         int j = i + 1;
+    //         while(A[j]==A[i])
+    //             j++;
+    //         cout << "Elemen " << A[i] << " muncul " << j - i << " kali" << endl;
 
-            i = j - 1;
+    //         i = j - 1;
+    //     }
+    // }
+
+    // ----- 6. Find duplicate elemen using hash table -----
+
+    int B[20]{0};
+    for (i = 0; i < n;i++){
+        /*
+            Setiap nilai dari A akan menjadi indeks pada B yang akan meng-increment nilainya tergantung dari seberapa sering elemen A itu muncul.
+        */
+        B[A[i]]++;
+    }
+    for (i = 0; i < 20;i++){
+        if(B[i]>1){
+            cout << "Element " << i << " muncul " << B[i] << " kali" << endl;
+            
         }
     }
-
 }
