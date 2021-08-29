@@ -193,22 +193,61 @@ int main(){
     
     */
 
-    int A[]{8, 3, 6, 4, 6, 5, 6, 8, 2, 7};
-    int count;
+    // int A[]{8, 3, 6, 4, 6, 5, 6, 8, 2, 7};
+    // int count;
 
-    for (i = 0; i < 9;i++){
-        count = 1;
-        if(A[i]!=-1){
-            for (j = i + 1; j < 10;j++){
-                if(A[i]==A[j]){
-                    count++;
-                    A[j] = -1;
-                    // cout << count;
-                }
-            }
-            if(count > 1){
-                cout << "Elemen " << A[i] << " muncul " << count << " kali"<< endl;
-            }
+    // for (i = 0; i < 9;i++){
+
+    //     count = 1;
+    //     if(A[i]!=-1){
+    //         for (j = i + 1; j < 10;j++){
+    //             if(A[i]==A[j]){
+    //                 count++;
+    //                 A[j] = -1; // Penanda bahwa suatu elemen telah di catat sebagai duplikat, jadi tidak perlu di proses ulang
+    //             }
+    //         }
+    //         if(count > 1){
+    //             cout << "Elemen " << A[i] << " muncul " << count << " kali"<< endl;
+    //         }
+    //     }
+    // }
+
+    // ----- 8. Find a pair with sum K (a+b=k)
+
+    /*
+        Program :
+            Mencari pasangan elemen di suatu array yang jika dijumlahkan akan menghasilkan nilai K. 
+
+            Note : Semua elemen unique, jadi tidak ada duplicate element.
+        
+        Ide Kunci : 
+            1. Method 1
+                Menggunakan 2 iterator i dan j, j melakukan comparasi terhadap i, ketika A[i]==A[j] maka tampilkan pasangan tersebut yg bernilai K jika dijumlahkan
+
+    */
+
+    int A[]{6, 3, 8, 10, 16, 7, 5, 2, 9, 14};
+    int n = sizeof(A) / sizeof(int);
+    int k = 10;
+    int B[16]{0};
+
+    // 1. ----- Method 1 -----
+    // for (i = 0; i < n - 1;i++){
+    //     for (j = i + 1; j < n;j++){
+    //         if(A[i]+A[j]==k){
+    //             cout << A[i] << " + " << A[j] << " = " << k << endl;
+    //         }
+    //     }
+    // }
+
+    // 2. ----- Method 1 (hash table) -----
+    for (i = 0; i < n;i++){
+        /*
+            Penyaringan : Hanya berlaku apabila kedua elemen ketika dijumlahkan = K && ketika k-A[i] lebih besar dari 0. (karena index array tidak boleh negatif) 
+        */
+        if(B[k-A[i]]!=0 && k-A[i]>=0){
+            cout << A[i] << "+" << k - A[i] << " = " << k << endl;
         }
+        B[A[i]]++;
     }
 }
