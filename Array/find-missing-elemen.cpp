@@ -32,6 +32,20 @@
    
 */
 
+/*
+   3. Program : Find missing elemen - Sorted Array 
+                 Mencari BEBERAPA elemen yang hilang/tidak ada pada sorted array.
+                 {6,7,8,9,11,15,16,17..} 
+        Method : 
+            - Ide Kunci :
+                Jika selisih elemen ke[i] - beda (6) tidak sama dengan 6 maka ada indikasi elemen yang hilang disana. 
+
+            - Algorithm
+                1. Buat variable diff sebagai selisih antara elemen[i] dengan indeks[i].
+                2. Buat penyaringan (if) kalau elemen ke[i] tidak sama dengan diff(6) maka tampilkan elemen itu.
+   
+*/
+
 #include <iostream>
 using namespace std;
 
@@ -49,15 +63,27 @@ int main(){
 
 
     // 2. Find the missing elemen - Start from {6....}
+    
+    // int diff;
+    // int b[]{6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17};
+    // int a = b[0];
+    // diff = a - 0;
+    // for (i = 0; i < 12;i++){
+    //     if(b[i]-i != diff){
+    //         cout << i+diff;
+    //         break;
+    //     }
+    // }
 
-    int diff;
-    int b[]{6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17};
-    int a = b[0];
-    diff = a - 0;
-    for (i = 0; i < 12;i++){
-        if(b[i]-i != diff){
-            cout << i+diff;
-            break;
+    // 3. Find the missing elements - Start from {6....}
+    int a[]{6, 7, 8, 9, 11, 12, 15, 16, 17, 18, 19};
+    int diff = a[0] - 0;
+    for (i = 0; i < 11;i++){
+        if(a[i]-i !=diff){
+            while(diff<a[i]-i){
+                cout << i + diff << " ";
+                diff++;
+            }
         }
     }
 }
