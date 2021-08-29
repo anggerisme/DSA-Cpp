@@ -83,7 +83,7 @@ using namespace std;
 int main(){
 
     // ----- 1. Find the missing elemen - Start from {1....} -----
-    int i,s, sum=0;
+    int i,j,s, sum=0;
     // int a[]{1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12};
 
     // for (i = 0; i < 11;i++){
@@ -137,8 +137,8 @@ int main(){
 
     // ----- 5. Find duplicate elements -----
     // int lastDuplicate = 0;
-    int A[]{3, 6, 8, 8, 10, 12, 15, 15, 15, 20};
-    int n = sizeof(A) / sizeof(int);
+    // int A[]{3, 6, 8, 8, 10, 12, 15, 15, 15, 20};
+    // int n = sizeof(A) / sizeof(int);
     // for (i = 0; i < 10; i++){
     //     if(A[i]==A[i+1] && A[i]!=lastDuplicate){
     //         cout << A[i];
@@ -164,18 +164,51 @@ int main(){
     // }
 
     // ----- 6. Find duplicate elemen using hash table -----
+    
 
-    int B[20]{0};
-    for (i = 0; i < n;i++){
-        /*
-            Setiap nilai dari A akan menjadi indeks pada B yang akan meng-increment nilainya tergantung dari seberapa sering elemen A itu muncul.
-        */
-        B[A[i]]++;
-    }
-    for (i = 0; i < 20;i++){
-        if(B[i]>1){
-            cout << "Element " << i << " muncul " << B[i] << " kali" << endl;
+    // int B[20]{0};
+    // for (i = 0; i < n;i++){
+    //     /*
+    //         Setiap nilai dari A akan menjadi indeks pada B yang akan meng-increment nilainya tergantung dari seberapa sering elemen A itu muncul.
+    //     */
+    //     B[A[i]]++;
+    // }
+    // for (i = 0; i < 20;i++){
+    //     if(B[i]>1){
+    //         cout << "Element " << i << " muncul " << B[i] << " kali" << endl;
             
+    //     }
+    // }
+
+
+    // ----- 7. Find duplicate in unsorted array -----
+
+    /*
+        Ide Kunci:
+            Ambil satu elemen dari array kemudian bandingkan/compare ke seluruh elemen array (looping) jika ada elemen yg sama dengan elemen yg di check tersebut maka catat duplikasi tersebut ke variable count. Sehingga count akan tergantung seberapa banyak elemen tersebut muncul.
+
+            Elemen yang sudah di hitung/ter-indikasi duplicate tidak dihitung lagi, maka dari itu ditandai dengan (-1).
+
+            Tugas iterator j melakukan comparasi ke seluruh elemen. Setelah selesei melakukan comparasi lakukan increment i. 
+    
+    */
+
+    int A[]{8, 3, 6, 4, 6, 5, 6, 8, 2, 7};
+    int count;
+
+    for (i = 0; i < 9;i++){
+        count = 1;
+        if(A[i]!=-1){
+            for (j = i + 1; j < 10;j++){
+                if(A[i]==A[j]){
+                    count++;
+                    A[j] = -1;
+                    // cout << count;
+                }
+            }
+            if(count > 1){
+                cout << "Elemen " << A[i] << " muncul " << count << " kali"<< endl;
+            }
         }
     }
 }
