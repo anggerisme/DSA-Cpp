@@ -2,35 +2,6 @@
     ***************
     Program : Membuat permutation dari sebuah string.
     
-    Ide Kunci : 
-        1. Huruf 
-        2. Syarat anagram 2 ; Memiliki karakter yang sama
-    
-    Note :  - Tidak ada duplicate karakter
-            - Hanya berlaku untuk Lower Case (26) 
-
-    Method :
-
-    Ide Kunci : Jika kedua karakter jumlahnya SAMA maka lakukan prosedur dibawah ini, jika keduanya TIDAK SAMA maka otomatis BUKAN anagram
-    
-    1. Check karakter satu per satu.
-        Ide Kunci : Check karakter pada Array A, dan bandingkan satu persatu dengan karakter Array B. 
-        - Lakukan perbandingan karakter B[j] pada karakter A[i], jika A[0] != B[0] maka increment B[j] sampai B[j]=A[i], 
-          jika demikian maka break dan lakukan increment A[i].
-        Time taken (O(n^2)) - time consumnig.
-
-          
-    2. Hash table
-        Ukuran table : 26.
-        - Set all value pada hash table = 0
-        - Mulai lakukan scanning pada Array A[i], lakukan increment pada hash table pada indeks ke (mis). 100 (d) - 97 (a) = 3, 
-          Lakukan sampai akhir Array A.
-        - Lakukan hal yg sama pada Array B, Jika ditemukan karakter yang sama dengan Array A, lakukan DECREMENT. 
-          sehingga nilai yg tadinya 1 menjadi 0.
-        - Ide Kunci : Jika semua value pada hash table bernilai 0, maka = Anagram, sebaliknya jika ada value yg bukan 0 maka BUKAN anagram
-
-        Time Taken = O(n)  
-
     **************
 */
 
