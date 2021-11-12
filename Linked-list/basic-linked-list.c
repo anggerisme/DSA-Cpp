@@ -28,14 +28,41 @@ void Display(struct Node *p){
         printf("%d ", p->data);
         // Recursive display
         Display(p->next);
-    //    p = p->next;
     }
 }
 
+////////////////// Counter Elemen //////////////////
+
+int count(struct Node *p){
+    int i, c;
+    
+    /* Looping method */
+    
+    // while(p!=0){
+    //     c++;
+    //     p = p->next;
+    // }
+
+    /* Recursive method  */
+    // if(p==0)
+    //     return 0;
+    // else
+    //     return count(p->next) + 1;
+
+    /* Bentuk lain */
+    int x = 0;
+    if(p){
+        x = count(p->next);
+        return x + 1;
+    }
+    else
+        return 0;
+}
 
 int main(){
     int A[] = {3, 4, 5, 6, 7};
     struct Node p;
     create(A, 5);
     Display(first);
+    printf("\nTotal : %d", count(first));
 }
