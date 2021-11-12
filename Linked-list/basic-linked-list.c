@@ -31,7 +31,7 @@ void Display(struct Node *p){
     }
 }
 
-////////////////// Counter Elemen //////////////////
+///////////////////////////// Counter Elemen /////////////////////////////
 
 int count(struct Node *p){
     int i, c;
@@ -57,12 +57,33 @@ int count(struct Node *p){
     }
     else
         return 0;
+
 }
+
+///////////////////////////// Adding Elemen /////////////////////////////
+int add(struct Node *p){
+    // 1. Looping method
+    /*int sum=0;
+    while(p){
+        sum = sum + p->data;
+        p = p->next;
+    }
+    return sum;*/
+
+    // 2. Recursive method
+    if(p)
+        return add(p->next) + p->data;
+    else
+        return 0;
+}
+
+
 
 int main(){
     int A[] = {3, 4, 5, 6, 7};
     struct Node p;
     create(A, 5);
     Display(first);
-    printf("\nTotal : %d", count(first));
+    printf("\nBanyak elemen : %d", count(first));
+    printf("\nJumlah elemen : %d", add(first));
 }
