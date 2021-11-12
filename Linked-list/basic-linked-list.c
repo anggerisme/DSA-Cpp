@@ -24,9 +24,11 @@ void create(int A[], int n){
 }
 
 void Display(struct Node *p){
-    while(p!=NULL){
+    if(p!=NULL){
         printf("%d ", p->data);
-       p = p->next;
+        // Recursive display
+        Display(p->next);
+    //    p = p->next;
     }
 }
 
