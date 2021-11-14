@@ -31,7 +31,7 @@ void Display(struct Node *p){
     }
 }
 
-///////////////////////////// Counter Elemen /////////////////////////////
+///////////////////////////// 1. Counter Elemen /////////////////////////////
 
 int count(struct Node *p){
     int i, c;
@@ -60,7 +60,7 @@ int count(struct Node *p){
 
 }
 
-///////////////////////////// Adding Elemen /////////////////////////////
+///////////////////////////// 2. Adding Elemen /////////////////////////////
 int add(struct Node *p){
     // 1. Looping method
     /*int sum=0;
@@ -76,14 +76,56 @@ int add(struct Node *p){
     else
         return 0;
 }
+///////////////////////////// 3. Find Max Element /////////////////////////////
 
+int max(struct Node *p){
+    int min=2;
+    int x;
+    /*
+        Selama data lebih besar dari M, simpan nilai data ke M
+        loop selama p != NULL
+    
+    */
+    // 1. Looping method
+    /* while(p){
+        if(p->data>min)
+            min = p->data;
+            
+        p = p->next;
+    }
+    return min; */
+    
+    // 2. Recursive method
+    if(p==NULL)
+        return min;
+        
+    x = max(p->next);
+    return x>p->data?x:p->data;
+    
+}
 
+///////////////////////////// 4. Find Min Element /////////////////////////////
+int min(struct Node *p){
+    int min;
+    min = p->data;
+    // printf("\n\n%d", x);
+    while(p!=0){
+        if(min>p->data){
+            min = p->data;
+            return min;
+        }
+        p = p->next;
+    }
+}
 
 int main(){
-    int A[] = {3, 4, 5, 6, 7};
+    int A[] = {3, 4, 2, 6, 7};
     struct Node p;
     create(A, 5);
     Display(first);
     printf("\nBanyak elemen : %d", count(first));
     printf("\nJumlah elemen : %d", add(first));
+    printf("\nMax elemen : %d", max(first));
+    printf("\nMin elemen : %d", min(first));
+    // min(first);
 }
