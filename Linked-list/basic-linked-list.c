@@ -145,6 +145,29 @@ struct Node *search(struct Node *p, int key){
 
 }
 
+///////////////////////////// 6. Inserting Element /////////////////////////////
+int insert(int pos, int x){
+    struct Node *t, *p;
+    int i = 0;
+    if(pos==0){
+        t = (struct Node *)malloc(sizeof(struct Node));
+        t->data = x;
+        t->next = first;
+        first = t;
+    }
+    else if(pos>0){
+        p = first;
+        for (; i < pos - 1 && p;i++)
+            p = p->next;
+        if(p){
+            t = (struct Node *)malloc(sizeof(struct Node));
+            t->data = x;
+            t->next = p->next;
+            p->next = t;
+        }
+    }
+}
+
 
 int main(){
     int A[] = {3, 4, 2, 6, 7};
@@ -157,10 +180,11 @@ int main(){
     // printf("\nElemen ditemukan : %d", search(first, 7));
     // min(first);
 
-    p = search(first, 7);
+    /* p = search(first, 7);
     if(p!=0)
         printf("Elemen ditemukan : %d", p->data);
     else
-        printf("Elemen tidak ditemukan!");
+        printf("Elemen tidak ditemukan!"); */
+    insert(4, 9);
     Display(first);
 }
