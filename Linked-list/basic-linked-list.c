@@ -118,14 +118,49 @@ int min(struct Node *p){
     }
 }
 
+///////////////////////////// 5. Searching Element /////////////////////////////
+struct Node *search(struct Node *p, int key){
+    // 1. Looping method
+    struct Node *q;
+    while(p!=NULL){
+        if(key==p->data){
+            /* Bring the elemen to the forefront*/
+            q->next = p->next;
+            p->next = first;
+            first = p;
+            return (p);
+        }
+        q = p;
+        p = p->next;
+    }
+    return NULL;
+
+
+    // 2. Recursive method
+    // if(p==NULL)
+    //     return NULL;
+    // if(key==p->data)
+    //     return p;
+    // return search(p->next, key); 
+
+}
+
+
 int main(){
     int A[] = {3, 4, 2, 6, 7};
-    struct Node p;
+    struct Node *p;
     create(A, 5);
-    Display(first);
-    printf("\nBanyak elemen : %d", count(first));
-    printf("\nJumlah elemen : %d", add(first));
-    printf("\nMax elemen : %d", max(first));
-    printf("\nMin elemen : %d", min(first));
+    // printf("\nBanyak elemen : %d", count(first));
+    // printf("\nJumlah elemen : %d", add(first));
+    // printf("\nMax elemen : %d", max(first));5
+    // printf("\nMin elemen : %d", min(first));
+    // printf("\nElemen ditemukan : %d", search(first, 7));
     // min(first);
+
+    p = search(first, 7);
+    if(p!=0)
+        printf("Elemen ditemukan : %d", p->data);
+    else
+        printf("Elemen tidak ditemukan!");
+    Display(first);
 }
