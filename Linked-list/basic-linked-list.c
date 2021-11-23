@@ -24,12 +24,20 @@ void create(int A[], int n){
 }
 
 void Display(struct Node *p){
-    if(p!=NULL){
+    /////// using if ///////////
+    // if(p!=NULL){
+    //     printf("%d ", p->data);
+    //     // Recursive display
+    //     Display(p->next);
+    // }
+
+    /////// while ///////////
+    while(p!=0){
         printf("%d ", p->data);
-        // Recursive display
-        Display(p->next);
+        p = p->next;
     }
 }
+
 
 ///////////////////////////// 1. Counter Elemen /////////////////////////////
 
@@ -130,6 +138,7 @@ struct Node *search(struct Node *p, int key){
             first = p;
             return (p);
         }
+        // else : move q to the next node (p) and p to the next node
         q = p;
         p = p->next;
     }
@@ -168,6 +177,22 @@ int insert(int pos, int x){
     }
 }
 
+///////////////////////////// 6. Inserting at last /////////////////////////////
+void insert_last(int x){
+    //// 1. Create node for t ////
+    struct Node *t, *last;
+    t = (struct Node *)malloc(sizeof(struct Node));
+    t->data = x;
+    t->next = NULL;
+    if(first==NULL){
+        first = last = t;
+    }
+    else{
+        last->next = t;
+        last = t;
+    }
+}
+
 
 int main(){
     int A[] = {3, 4, 2, 6, 7};
@@ -185,6 +210,9 @@ int main(){
         printf("Elemen ditemukan : %d", p->data);
     else
         printf("Elemen tidak ditemukan!"); */
-    insert(4, 9);
+    // insert(4, 9);
+    insert_last(8);
     Display(first);
+
+
 }
