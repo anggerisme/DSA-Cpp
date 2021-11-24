@@ -193,9 +193,56 @@ void insert_last(int x){
     }
 }
 
+///////////////////////////// 7. Inserting at sorted linked list /////////////////////////////
+void insert_sorted(int x){
+    //// 1. Create node for t ////
+    struct Node *q, *p, *t;
+    q = p = first;
+    t = (struct Node*)malloc(sizeof(struct Node));
+    t->data = x;
+    t->next = NULL;
+
+    //// 2. Traversing the node using p & q ////
+    while(p&&p->data<x){
+        q=p;
+        p = p->next;
+    }
+
+    //// 3. Ubah structure node ////
+    t->next = q->next;
+    q->next = t;
+}
+
+///////////////////////////// 8. Deleting node /////////////////////////////
+int delete(struct Node *p,int pos){
+    struct Node *q;
+    int i,x=-1;
+    // Ada 3 kemungkinan posisi yang harus di check
+    if(pos<1||pos>count(p))
+        return -1;
+    if(pos==1){
+        q = first;
+        x = first->data;
+        first = first->next;
+        free(p);
+        return x;
+    }
+    else{
+        for (i = 0; i < pos-1;i++){
+            q = p;
+            p = p->next;
+        }
+        q->next = p->next;
+        x = p->data;
+        free(p);
+        return x;
+    }
+
+}
+
 
 int main(){
-    int A[] = {3, 4, 2, 6, 7};
+    int A[] = {1, 2, 3, 4, 5};
     struct Node *p;
     create(A, 5);
     // printf("\nBanyak elemen : %d", count(first));
@@ -211,7 +258,9 @@ int main(){
     else
         printf("Elemen tidak ditemukan!"); */
     // insert(4, 9);
-    insert_last(8);
+    // insert_last(8);
+    // insert_sorted(6);
+    delete (first, 2);
     Display(first);
 
 
