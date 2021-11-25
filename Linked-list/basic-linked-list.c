@@ -4,7 +4,7 @@
 struct Node{
     int data;
     struct Node *next;
-}*first = NULL; //First pointer 
+}*first = NULL, *second=NULL, *third=NULL;
 
 void create(int A[], int n){
     int i;
@@ -23,6 +23,23 @@ void create(int A[], int n){
     }
 }
 
+void create2(int A[], int n){
+    int i;
+    struct Node *t, *last;
+    second = (struct Node *)malloc(sizeof(struct Node));
+    second->data = A[0];
+    second->next = NULL;
+    last = second;
+
+    for (i = 1; i < n;i++){
+        t = (struct Node *)malloc(sizeof(struct Node));
+        t->data = A[i];
+        t->next = NULL;
+        last->next = t;
+        last = t;
+    }
+}
+///////////////////////////// 0. Display Elemen /////////////////////////////
 void Display(struct Node *p){
     /////// using if ///////////
     // if(p!=NULL){
@@ -38,9 +55,7 @@ void Display(struct Node *p){
     }
 }
 
-
 ///////////////////////////// 1. Counter Elemen /////////////////////////////
-
 int count(struct Node *p){
     int i, c;
     
@@ -87,8 +102,8 @@ int add(struct Node *p){
 ///////////////////////////// 3. Find Max Element /////////////////////////////
 
 int max(struct Node *p){
-    int min=2;
     int x;
+    int min = 0;
     /*
         Selama data lebih besar dari M, simpan nilai data ke M
         loop selama p != NULL
@@ -239,29 +254,128 @@ int delete(struct Node *p,int pos){
     }
 
 }
+///////////////////////////// 9. Check sorted or not /////////////////////////////
+int check_sorted(struct Node *p){
+    int x = -32768;
+    while(p!=NULL){
+        if(p->data<x)
+            return 0;
+        x = p->data;
+        p = p->next;
+    }
+    return 1;
+}
 
+///////////////////////////// 10. Remove duplicate node (Sorted Linked list) /////////////////////////////
+void remove_duplicate(struct Node *q){
+    struct Node *p=q->next;
+    while(p!=NULL){
+        if(q->data!=p->data){
+            q = p;
+            p = p->next;
+        }
+        else{
+            q->next = p->next;
+            free(p);
+            p = q->next;
+        }
+    }
+
+}
+
+///////////////////////////// 11. Remove duplicate node (Unsorted Linked list) /////////////////////////////
+// void remove_unsorted(struct Node *p){
+//     struct Node *q;
+//     int H[max(first)];
+//     int i;
+//     for(i = 0; i < max(first);i++)
+//         H[i] = 0;
+//     for (i = 0;i<max(first);i++)
+//         H[p->data]++;
+//     while(p!=NULL){
+//         if()
+//     }
+// }
+
+///////////////////////////// 12. Reverse linked list /////////////////////////////
+void reverse(struct Node *q, struct Node *p){
+    //////// 1. Metode reverse elemen //////////
+    /* int i=0;
+    int H[count(p)];
+    while(p){
+        H[i++] = p->data;
+        p = p->next;
+    }
+    p = first;
+    i--;
+    while(p){
+        p->data = H[i--];
+        p = p->next;   
+    } */
+
+    //////// 2. Metode reverse link //////////
+    /* struct Node *q, *r;
+    while(p){
+        r = q;
+        q = p;
+        p=p->next;
+        q->next = r;
+    }
+    first = q; */
+
+    //////// 3. Metode recursive //////////
+    if(p){
+        reverse(p, p->next);
+        p->next = q;
+    }
+    else
+        first = q;
+}
+
+///////////////////////////// 13. Merge 2 sorted Array /////////////////////////////
+void merge(struct Node *f, struct Node *s){
+    struct Node *last;
+    if(f->data<s->data){
+        third = last = f;
+        f = f->next;
+        third->next = NULL;
+    }
+    else{
+        third = last = s;
+        s = s->next;
+        third->next = NULL;
+    }
+    while(f && s){
+        if(f->data<s->data){
+            last->next = f;
+            last = f;
+            f = f->next;
+            last->next = NULL;
+        }
+        else{
+            last->next = s;
+            last = s;
+            s=s->next;
+            last->next = NULL;
+        }
+    }
+    if(f)
+        last->next = f;
+    if(s)
+        last->next = s;
+}
 
 int main(){
-    int A[] = {1, 2, 3, 4, 5};
+    int A[] = {10, 7, 30, 40, 50};
+    int B[] = {5, 6, 252, 352, 452};
     struct Node *p;
     create(A, 5);
-    // printf("\nBanyak elemen : %d", count(first));
-    // printf("\nJumlah elemen : %d", add(first));
-    // printf("\nMax elemen : %d", max(first));5
-    // printf("\nMin elemen : %d", min(first));
-    // printf("\nElemen ditemukan : %d", search(first, 7));
-    // min(first);
+    create2(B, 5);
 
-    /* p = search(first, 7);
-    if(p!=0)
-        printf("Elemen ditemukan : %d", p->data);
-    else
-        printf("Elemen tidak ditemukan!"); */
-    // insert(4, 9);
-    // insert_last(8);
-    // insert_sorted(6);
-    delete (first, 2);
-    Display(first);
-
-
+    // Display(first);
+    // printf("\n");
+    // Display(second);
+    merge(first, second);
+    printf("\n\nMerge list : ");
+    Display(third);
 }
