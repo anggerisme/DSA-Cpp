@@ -1,98 +1,109 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct stack{
-  int top;
-  int size;
-  int *s;
-};
+typedef struct{
+    int size;
+    int top;
+    int *s;
+}stack;
 
-//////////////// 1. Pushing elemen //////////////////
+////////////////////////// 1. display stack //////////////////////////
+void show(stack st){
+    for(int i = st.size-1; i >= 0;i--)
+        printf("%d\n", st.s[i]);
+}   
 
-void push(struct stack *st, int x){
-    if(st->top == st->size-1){
-        printf("full");
-    }
+////////////////////////// 2. push() //////////////////////////
+void push(stack *st, int x){
+    if(st->top==st->size-1)
+        printf("Stack overflow");
     else{
         st->top++;
-        st->s[st->top]=x;
+        st->s[st->top] = x;
     }
 }
 
-//////////////// 2. Deleting elemen //////////////////
-
-int pop(struct stack *st){
+////////////////////////// 3. pop() //////////////////////////
+int pop(stack *st, int pos){
     int x = -1;
-    if(st->top==-1){
-        printf("Stack is underflow");
-    }
+    if(st->top==-1)
+        printf("stack is empty");
     else{
-        x = st->s[st->top--];
-        // st->top--;
+        x = st->s[st->top];
+        st->top--;
     }
     return x;
 }
-
-//////////////// 3. Peek elemen //////////////////
-int peek(struct stack st, int pos){
+////////////////////////// 4. peek() //////////////////////////
+int peek(stack st, int pos){
     int x = -1;
     if(st.top-pos+1<0)
-        printf("Invalid position");
+        printf("invalid position");
     else
-        x = st.s[st.top-pos + 1];
+        x = st.s[st.top-pos+1];
     return x;
 }
 
-//////////////// 4. Stack is full //////////////////
-void stackFull(struct stack st){
-    if(st.top==st.size-1||st.top>st.size-1){
-        printf("Stack is full\n");
-        printf("Posisi stack teratas telah terisi oleh %d.\nKurang : %d slot\n", st.s[st.top], -1*(st.s[st.top]-(st.size-1)));
+////////////////////////// Stack using linked list //////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+struct node{
+    int data;
+    struct node *next;
+}*top = NULL;
+
+////////////////////////// 1. push_node() //////////////////////////
+void show_node(struct node *p){
+    while(p){
+        printf("%d - ", p->data);
+        p = p->next;
     }
+}
+
+////////////////////////// 2. push_node() //////////////////////////
+void push_node(int x, stack st){
+    struct node *t;
+    t = (struct node *)malloc(st.size);
+    if(t==NULL)
+        printf("stack overflow");
+    else{
+        t->data = x;
+        t->next = top;
+        top = t;
+    }
+}
+
+////////////////////////// 3. peek() //////////////////////////
+int peek_node(int pos){
+    int i;
+    struct node *t;
+    t = top;
+    
+    for (i = 0; t != 0 && i < pos - 1;i++)
+        t = t->next;
+    if(t)
+        return t->data;
     else
-        printf("Posisi stack teratas telah terisi oleh %d.\nMasih tersedia %d slot\n", st.s[st.top], (st.size-1)-st.top);
+        return -1;
+    
 }
 
-//////////////// 5. Stack is empty //////////////////
-void empty(struct stack st){
-    int x = -1;
-    if(st.top==-1){
-        printf("Stack kosong");
-    }
-}
-
-//////////////// 6. Stack Top //////////////////
-void Top(struct stack st){
-    int x = -1;
-    if(st.top==-1){
-        printf("Stack kosong");
-    }
-    else
-        printf("Posisi stack teratas telah terisi oleh %d", st.s[st.top]);
-}
-
-
-int main()
-{
-    struct stack st;
+int main(){
+    stack st;
+    st.size = 5;
+    st.s = (int*)malloc(st.size);
     st.top = -1;
-    printf("Masukkan ukuran array :");
-    scanf("%d", &st.size);
+    push(&st, 10); // 5
+    push(&st, 15); // 4
+    push(&st, 8); // 3
+    push(&st, 20); // 2
+    push(&st, 1); // 1
 
-    st.s = (int*) malloc(st.size);
-    push(&st, 1);
-    push(&st, 2);
-    push(&st, 3);
-    push(&st, 3);
-    push(&st, 3);
-    push(&st, 9);
-    printf("%d\n", st.top);
-    stackFull(st);
-    empty(st);
-    Top(st);
-    // printf("%d\n", peek(st,1));
-    // printf("%d", pop(&st));
-    // printf("%d", st.s[0]);
-
-    return 0;
+    /////////// stack using linked list /////////
+    push_node(10, st); // 4
+    push_node(15, st); // 3
+    push_node(18, st); // 2
+    push_node(20, st); // 1 - last in become first node
+    // show_node(top);
+    printf("%d", peek_node(4));
 }
